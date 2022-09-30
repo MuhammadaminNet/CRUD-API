@@ -48,12 +48,12 @@ namespace yanabitta.Controllers
         [HttpGet,Authorize]
         public async Task<ActionResult<User>> GetAll()
         {
-            
+            var p = new PaginationParams()
+            {
+                PageSize = 1,
+                PageIndex = 2
+            };
 
-
-            var p = new PaginationParams();
-            p.PageSize = 1;
-            p.PageIndex = 2;
             var res = await service.GetAllAsync(p);
 
             return Ok(res);
