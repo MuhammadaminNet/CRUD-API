@@ -1,6 +1,7 @@
 ﻿using Data.IRepositories;
 using Domain.Entities;
 using Domain.Enums;
+using Services.Extentions;
 using Services.Helpers;
 using Services.IServices;
 using System;
@@ -30,6 +31,12 @@ namespace Services.Services
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// uploading file to wwwroot and create attachment
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public async Task<Attachment> UploadAsync(Stream stream, string filename)
         {
             // store to wwwroot
@@ -42,18 +49,16 @@ namespace Services.Services
             await fileStream.FlushAsync();
             fileStream.Close();
 
-
             // store to database
-            var attachment = await unitOfWork.Attachments.CreateAsync(new Attachment()
+            var attachment = new Attachment()
             {
                 Name = Path.GetFileName(filePath),
                 Path = Path.Combine(EnvironmentHelper.FilePath, Path.GetFileName(filePath)),
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
-                State = State.Created
-            });
+            };
 
-            return attachment;
+            attachment.Create();
+
+            return await unitOfWork.Attachments.CreateAsync(attachment);
         }
     }
 }
