@@ -4,6 +4,7 @@ using Domain.Entities;
 using Domain.Enums;
 using Services.DTOs;
 using Services.Exceptions;
+using Services.Extentions;
 using Services.IServices;
 using System;
 using System.Collections.Generic;
@@ -26,21 +27,21 @@ namespace Services.Services
         public async Task<User> CreateAsync(UserForCreation dto)
         {
             // uploading file to wwwroot
-            var attachment = await _attachmentService.UploadAsync(dto.File.OpenReadStream(), dto.File.FileName);
-
+            var attachment = await _attachmentService.UploadAsync(
+                dto.File.OpenReadStream(), dto.File.FileName);
 
             // store user to database
-            return await _unit.Users.CreateAsync(new User()
+            var user = new User()
             {
                 Name = dto.Name,
                 Age = dto.Age,
                 Login = dto.Login,
                 Password = dto.Password,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
                 FileId = attachment.Id,
                 Role = UserRole.User
-            });
+            };
+
+            return await _unit.Users.CreateAsync(user);
         }
 
         public async Task<bool> DeleteAsync(Expression<Func<User, bool>> expression)
@@ -48,9 +49,7 @@ namespace Services.Services
             var res = await _unit.Users.GetAsync(expression);
 
             if (res == null)
-            {
                 throw new UserException(404, "Not Found");
-            }
 
             await _unit.Users.DeleteAsync(res);
 
@@ -83,6 +82,8 @@ namespace Services.Services
             res.Age = user.Age;
             res.Login = user.Login;
             res.Password = user.Password;
+
+            res.Update();
 
             return await _unit.Users.UpdateAsync(res);
         }

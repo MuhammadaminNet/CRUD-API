@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums
 {
-    public enum State
+    public enum ItemState
     {
         Created,
         Updated,
