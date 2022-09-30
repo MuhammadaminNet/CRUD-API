@@ -41,8 +41,8 @@ namespace Data.Repositories
         public IQueryable<TSource> GetAll(Expression<Func<TSource, bool>> expression, string include = null, bool isTracking = true)
         {
             IQueryable<TSource> query = expression is null
-                ? db.Where(t => t.State != State.Deleted)
-                : db.Where(t => t.State != State.Deleted).Where(expression);
+                ? db.Where(t => t.State != ItemState.Deleted)
+                : db.Where(t => t.State != ItemState.Deleted).Where(expression);
 
             if (!string.IsNullOrEmpty(include) && query != null)
                 query = query.Include(include);
