@@ -5,6 +5,6 @@ namespace yanabitta.Auth
 {
     public interface IAuthService
     {
-        Task<string> LoginAsync(UserForLogin dto);
+        ValueTask<string> LoginAsync(UserForLogin dto);
     }
 }

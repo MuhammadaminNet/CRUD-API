@@ -29,9 +29,7 @@ namespace yanabitta.Controllers
         {
             var res = await service.GetAsync(p => p.Id == id);
 
-            return res is not null 
-                ? Ok(res) 
-                : NotFound();
+            return res is not null ? Ok(res) : NotFound();
         }
 
         [HttpPost]
@@ -39,24 +37,19 @@ namespace yanabitta.Controllers
         {
             var res = await service.CreateAsync(user);
 
-            if (res != null)
-                return new ObjectResult(res);
-
-            return BadRequest();
+            return res != null ? new ObjectResult(res) : BadRequest();
         }
 
         [HttpGet,Authorize]
         public async Task<ActionResult<User>> GetAll()
         {
-            var p = new PaginationParams()
+            var paginationItems = new PaginationParams()
             {
                 PageSize = 1,
                 PageIndex = 2
             };
 
-            var res = await service.GetAllAsync(p);
-
-            return Ok(res);
+            return Ok(await service.GetAllAsync(paginationItems));
         }
 
         [HttpDelete]
@@ -64,10 +57,7 @@ namespace yanabitta.Controllers
         {
             var check = await service.DeleteAsync(u => u.Id == id);
 
-            if (check == false)
-                throw new UserException(404, "Not found");
-
-            return Ok();
+            return check == false ? throw new UserException(400,"Not Found") : Ok();
         }
 
         [HttpPut]
@@ -75,10 +65,7 @@ namespace yanabitta.Controllers
         {
             var res = await service.UpdateAsync(u => u.Id == id, user);
 
-            if (res == null)
-                throw new UserException(404,"Not found");
-
-            return Ok(res);
+            return res == null ? throw new UserException(400, "Not found") : Ok(res);
         }
     }
 }
