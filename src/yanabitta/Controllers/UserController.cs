@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using src.Data.IRepositories;
 using src.Domain.Configurations;
@@ -38,8 +39,8 @@ namespace src.yanabitta.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<User>> Post([FromForm] UserForCreation user)
-            => Ok(await service.CreateAsync(user));
+        public async Task<ActionResult<User>> Post([FromForm] UserForCreation user,IFormFile file = null)
+            => Ok(await service.CreateAsync(user, file?.OpenReadStream(),file?.Name));
 
         /// <summary>
         /// Select all users

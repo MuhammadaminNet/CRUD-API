@@ -19,6 +19,5 @@ namespace src.Services.DTOs
         [Required,MinLength(6),NotNull]
         public string Password { get; set; }
         public UserRole Role { get; set; }
-        public IFormFile File { get; set; }
     }
 }

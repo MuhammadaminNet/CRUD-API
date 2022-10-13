@@ -1,4 +1,5 @@
-﻿using src.Data.IRepositories;
+﻿using AutoMapper;
+using src.Data.IRepositories;
 using src.Domain.Configurations;
 using src.Domain.Entities;
 using src.Domain.Enums;
@@ -8,6 +9,7 @@ using src.Services.Extentions;
 using src.Services.IServices;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -18,28 +20,22 @@ namespace src.Services.Services
     {
         private readonly IUnitOfWork _unit;
         private readonly IAttachmentService _attachmentService;
-        public UserService(IUnitOfWork unit, IAttachmentService attachmentService)
+        private readonly IMapper mapper;
+        public UserService(IUnitOfWork unit, 
+            IAttachmentService attachmentService,IMapper mapper)
         {
             _unit = unit;
             _attachmentService = attachmentService;
+            this.mapper = mapper;
         }
 
-        public async Task<User> CreateAsync(UserForCreation dto)
+        public async Task<User> CreateAsync(UserForCreation dto,Stream stream = null,string name = null)
         {
-            // uploading file to wwwroot
-            var attachment = await _attachmentService.UploadAsync(
-                dto.File.OpenReadStream(), dto.File.FileName);
+            User user = mapper.Map<User>(dto);
+            user.Create();
 
-            // store user to database
-            var user = new User()
-            {
-                Name = dto.Name,
-                Age = dto.Age,
-                Login = dto.Login,
-                Password = dto.Password,
-                FileId = attachment.Id,
-                Role = dto.Role
-            };
+            if(stream is not null)
+                user.FileId = (await _attachmentService.UploadAsync(stream,name)).Id;
 
             return await _unit.Users.CreateAsync(user);
         }
@@ -49,7 +45,7 @@ namespace src.Services.Services
             var res = await _unit.Users.GetAsync(expression);
 
             if (res == null)
-                throw new UserException(404, "Not Found");
+                return false;
 
             await _unit.Users.DeleteAsync(res);
 
@@ -57,25 +53,19 @@ namespace src.Services.Services
         }
 
         public async Task<IEnumerable<User>> GetAllAsync(PaginationParams @params = null, Expression<Func<User, bool>> expression = null)
-        {
-            return _unit.Users.GetAll(expression).ToList();
-        }
+            => _unit.Users.GetAll(expression).ToList();
 
         public Task<User> GetAsync(Expression<Func<User, bool>> expression)
             => _unit.Users.GetAsync(expression);
 
-        public async Task<User> UpdateAsync(Expression<Func<User, bool>> expression, UserForCreation user)
+        public async Task<User> UpdateAsync(Expression<Func<User, bool>> expression, UserForCreation dto)
         {
             var res = await _unit.Users.GetAsync(expression);
 
             if (res == null)
                 return null;
 
-            res.Name = user.Name;
-            res.Age = user.Age;
-            res.Login = user.Login;
-            res.Password = user.Password;
-
+            res = mapper.Map(dto, res);
             res.Update();
 
             return await _unit.Users.UpdateAsync(res);

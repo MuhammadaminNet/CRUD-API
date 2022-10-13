@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Services.Mappers;
 using src.Data.DbContexts;
 using src.Services.Helpers;
 using src.yanabitta.Extentions;
@@ -27,18 +28,16 @@ namespace src.yanabitta
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
 
             services.AddDbContext<UserDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("conStr")));
 
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "yanabitta", Version = "v1" });
             });
-
+            services.AddAutoMapper(typeof(MappingProfile));
             ServiceCustomExtentions.AddCustomExtentions(services);
             ServiceCustomExtentions.AddSwaggerService(services);
 
