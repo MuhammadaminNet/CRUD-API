@@ -23,44 +23,50 @@ namespace src.yanabitta.Controllers
             this._unit = unit;
         }
 
+        /// <summary>
+        /// Select user by entiring id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> Get(long id)
             => Ok(await service.GetAsync(p => p.Id == id));
 
+        /// <summary>
+        /// Create user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<User>> Post([FromForm] UserForCreation user)
-        {
-            var res = await service.CreateAsync(user);
+            => Ok(await service.CreateAsync(user));
 
-            return res != null ? new ObjectResult(res) : BadRequest();
-        }
-
+        /// <summary>
+        /// Select all users
+        /// </summary>
+        /// <param name="params"></param>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<User>> GetAll()
-        {
-            var paginationItems = new PaginationParams()
-            {
-                PageSize = 1,
-                PageIndex = 2
-            };
+        public async Task<ActionResult<User>> GetAll(PaginationParams @params = null)
+            => Ok(await service.GetAllAsync(@params));
 
-            return Ok(await service.GetAllAsync(paginationItems));
-        }
-
+        /// <summary>
+        /// Remove user by entiring id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<ActionResult> Delete(long id)
-        {
-            var check = await service.DeleteAsync(u => u.Id == id);
+           => Ok(await service.DeleteAsync(u => u.Id == id));
 
-            return check == false ? throw new UserException(400,"Not Found") : Ok();
-        }
-
+        /// <summary>
+        /// Update user by entiring id to entiring dto
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<ActionResult<User>> Put(long id, [FromForm]UserForCreation user)
-        {
-            var res = await service.UpdateAsync(u => u.Id == id, user);
-
-            return res == null ? throw new UserException(400, "Not found") : Ok(res);
-        }
+           => Ok(await service.UpdateAsync(u => u.Id == id, user));
     }
 }
