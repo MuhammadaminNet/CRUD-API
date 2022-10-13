@@ -1,12 +1,8 @@
-﻿using Domain.Commons;
-using Domain.Enums;
+﻿using src.Domain.Commons;
+using src.Domain.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Services.Extentions
+namespace src.Services.Extentions
 {
     public static class AuditableExtentions
     {

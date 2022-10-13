@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Services.Exceptions
+namespace src.Services.Exceptions
 {
     public class UserException : Exception
     {

@@ -1,14 +1,14 @@
-﻿using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using src.Domain.Entities;
 
-namespace Data.DbContexts
+namespace src.Data.DbContexts
 {
     public class UserDbContext : DbContext
     {
         public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
         {
         }
-        public DbSet<User> Userss { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
 
     }

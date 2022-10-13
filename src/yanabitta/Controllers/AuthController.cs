@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Services.DTOs;
+﻿using Microsoft.AspNetCore.Mvc;
+using src.Services.DTOs;
+using src.yanabitta.Auth;
 using System.Threading.Tasks;
-using yanabitta.Auth;
 
-namespace yanabitta.Controllers
+namespace src.yanabitta.Controllers
 {
     [Route("[controller]")]
     [ApiController]

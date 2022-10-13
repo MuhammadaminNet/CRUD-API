@@ -1,15 +1,14 @@
-﻿using Data.IRepositories;
-using Domain.Configurations;
-using Domain.Entities;
-using Domain.Enums;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Services.DTOs;
-using Services.Exceptions;
-using Services.IServices;
+using src.Data.IRepositories;
+using src.Domain.Configurations;
+using src.Domain.Entities;
+using src.Services.DTOs;
+using src.Services.Exceptions;
+using src.Services.IServices;
 using System.Threading.Tasks;
 
-namespace yanabitta.Controllers
+namespace src.yanabitta.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

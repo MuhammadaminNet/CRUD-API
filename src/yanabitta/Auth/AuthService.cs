@@ -1,17 +1,15 @@
-﻿using Data.IRepositories;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Services.DTOs;
-using Services.Exceptions;
-using System.IdentityModel.Tokens.Jwt;
+using src.Data.IRepositories;
+using src.Services.DTOs;
+using src.Services.Exceptions;
 using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using System.Security.Claims;
-using System.Linq.Expressions;
-using Domain.Entities;
 
-namespace yanabitta.Auth
+namespace src.yanabitta.Auth
 {
     public class AuthService : IAuthService
     {

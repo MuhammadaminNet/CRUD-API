@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Services.Exceptions;
+using src.Services.Exceptions;
 using System;
 using System.Threading.Tasks;
 
-namespace yanabitta.Middlewares
+namespace src.yanabitta.Middlewares
 {
     public class UserExceptionMiddleWare
     {

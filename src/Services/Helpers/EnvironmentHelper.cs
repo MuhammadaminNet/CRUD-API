@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Services.Helpers
+namespace src.Services.Helpers
 {
     public class EnvironmentHelper
     {

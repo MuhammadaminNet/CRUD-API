@@ -1,8 +1,8 @@
-﻿using Domain.Entities;
+﻿using src.Domain.Entities;
 using System;
 using System.Threading.Tasks;
 
-namespace Data.IRepositories
+namespace src.Data.IRepositories
 {
     public interface IUnitOfWork : IDisposable
     {

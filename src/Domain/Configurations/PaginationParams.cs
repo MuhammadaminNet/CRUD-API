@@ -1,4 +1,4 @@
-﻿namespace Domain.Configurations
+﻿namespace src.Domain.Configurations
 {
     public class PaginationParams
     {

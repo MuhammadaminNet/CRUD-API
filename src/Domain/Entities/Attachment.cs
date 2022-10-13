@@ -1,6 +1,6 @@
-﻿using Domain.Commons;
+﻿using src.Domain.Commons;
 
-namespace Domain.Entities
+namespace src.Domain.Entities
 {
     public class Attachment : Auditable
     {

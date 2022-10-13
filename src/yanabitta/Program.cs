@@ -5,7 +5,7 @@ using Serilog;
 using Serilog.Formatting.Compact;
 using System;
 
-namespace yanabitta
+namespace src.yanabitta
 {
     public class Program
     {

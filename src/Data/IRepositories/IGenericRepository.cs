@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Data.IRepositories
+namespace src.Data.IRepositories
 {
     public interface IGenericRepository<TSource>
     {

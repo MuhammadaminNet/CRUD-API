@@ -1,18 +1,18 @@
-﻿using Data.IRepositories;
-using Domain.Configurations;
-using Domain.Entities;
-using Domain.Enums;
-using Services.DTOs;
-using Services.Exceptions;
-using Services.Extentions;
-using Services.IServices;
+﻿using src.Data.IRepositories;
+using src.Domain.Configurations;
+using src.Domain.Entities;
+using src.Domain.Enums;
+using src.Services.DTOs;
+using src.Services.Exceptions;
+using src.Services.Extentions;
+using src.Services.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Services.Services
+namespace src.Services.Services
 {
     public class UserService : IUserService
     {

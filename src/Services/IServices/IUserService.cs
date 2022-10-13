@@ -1,12 +1,12 @@
-﻿using Domain.Configurations;
-using Domain.Entities;
-using Services.DTOs;
+﻿using src.Domain.Configurations;
+using src.Domain.Entities;
+using src.Services.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Services.IServices
+namespace src.Services.IServices
 {
     public interface IUserService
     {

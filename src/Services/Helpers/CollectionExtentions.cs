@@ -1,7 +1,7 @@
-﻿using Domain.Configurations;
+﻿using src.Domain.Configurations;
 using System.Linq;
 
-namespace Services.Helpers
+namespace src.Services.Helpers
 {
     public static class CollectionExtentions
     {

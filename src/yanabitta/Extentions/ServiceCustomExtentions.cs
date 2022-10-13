@@ -1,12 +1,12 @@
-﻿using Data.IRepositories;
-using Data.Repositories;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Services.IServices;
-using Services.Services;
-using yanabitta.Auth;
+using src.Data.IRepositories;
+using src.Data.Repositories;
+using src.Services.IServices;
+using src.Services.Services;
+using src.yanabitta.Auth;
 
-namespace yanabitta.Extentions
+namespace src.yanabitta.Extentions
 {
     public static class ServiceCustomExtentions
     {

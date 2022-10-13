@@ -1,7 +1,7 @@
-﻿using Domain.Enums;
+﻿using src.Domain.Enums;
 using System;
 
-namespace Domain.Commons
+namespace src.Domain.Commons
 {
     public class Auditable
     {

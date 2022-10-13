@@ -1,10 +1,10 @@
-﻿using Data.DbContexts;
-using Data.IRepositories;
-using Domain.Entities;
+﻿using src.Data.DbContexts;
+using src.Data.IRepositories;
+using src.Domain.Entities;
 using System;
 using System.Threading.Tasks;
 
-namespace Data.Repositories
+namespace src.Data.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

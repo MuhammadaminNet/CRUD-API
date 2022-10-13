@@ -1,4 +1,3 @@
-using Data.DbContexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,12 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Services.Helpers;
+using src.Data.DbContexts;
+using src.Services.Helpers;
+using src.yanabitta.Extentions;
+using src.yanabitta.Middlewares;
 using System.Text;
-using yanabitta.Extentions;
-using yanabitta.Middlewares;
 
-namespace yanabitta
+namespace src.yanabitta
 {
     public class Startup
     {

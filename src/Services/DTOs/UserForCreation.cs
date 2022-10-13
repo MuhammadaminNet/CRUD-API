@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Services.DTOs
+namespace src.Services.DTOs
 {
     public class UserForCreation
     {

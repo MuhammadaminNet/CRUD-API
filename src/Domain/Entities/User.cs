@@ -1,8 +1,8 @@
-﻿using Domain.Commons;
-using Domain.Enums;
+﻿using src.Domain.Commons;
+using src.Domain.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Entities
+namespace src.Domain.Entities
 {
     public class User : Auditable
     {

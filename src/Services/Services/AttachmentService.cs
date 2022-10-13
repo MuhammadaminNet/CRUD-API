@@ -1,15 +1,14 @@
-﻿using Data.IRepositories;
-using Domain.Entities;
-using Domain.Enums;
-using Services.Extentions;
-using Services.Helpers;
-using Services.IServices;
+﻿using src.Data.IRepositories;
+using src.Domain.Entities;
+using src.Services.Extentions;
+using src.Services.Helpers;
+using src.Services.IServices;
 using System;
 using System.IO;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Services.Services
+namespace src.Services.Services
 {
     public class AttachmentService : IAttachmentService
     {

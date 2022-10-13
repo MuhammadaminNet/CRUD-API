@@ -1,14 +1,14 @@
-﻿using Data.DbContexts;
-using Data.IRepositories;
-using Domain.Commons;
-using Domain.Enums;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using src.Data.DbContexts;
+using src.Data.IRepositories;
+using src.Domain.Commons;
+using src.Domain.Enums;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Data.Repositories
+namespace src.Data.Repositories
 {
     public class GenericRepository<TSource> : IGenericRepository<TSource> where TSource : Auditable
     {

@@ -1,10 +1,10 @@
-﻿using Domain.Entities;
+﻿using src.Domain.Entities;
 using System;
 using System.IO;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Services.IServices
+namespace src.Services.IServices
 {
     public interface IAttachmentService
     {

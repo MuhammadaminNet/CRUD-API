@@ -1,7 +1,7 @@
-﻿using Services.DTOs;
+﻿using src.Services.DTOs;
 using System.Threading.Tasks;
 
-namespace yanabitta.Auth
+namespace src.yanabitta.Auth
 {
     public interface IAuthService
     {
