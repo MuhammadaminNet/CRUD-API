@@ -56,13 +56,13 @@ namespace src.Services.Services
             return true;
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync(PaginationParams @params, Expression<Func<User, bool>> expression = null)
+        public async Task<IEnumerable<User>> GetAllAsync(PaginationParams @params = null, Expression<Func<User, bool>> expression = null)
         {
             return _unit.Users.GetAll(expression).ToList();
         }
 
         public Task<User> GetAsync(Expression<Func<User, bool>> expression)
-            => _unit.Users.GetAsync(expression, "Attachment");
+            => _unit.Users.GetAsync(expression);
 
         public async Task<User> UpdateAsync(Expression<Func<User, bool>> expression, UserForCreation user)
         {

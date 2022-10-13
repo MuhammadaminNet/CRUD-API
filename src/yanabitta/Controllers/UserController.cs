@@ -24,12 +24,8 @@ namespace src.yanabitta.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> Get([FromForm] long id)
-        {
-            var res = await service.GetAsync(p => p.Id == id);
-
-            return res is not null ? Ok(res) : NotFound();
-        }
+        public async Task<ActionResult<User>> Get(long id)
+            => Ok(await service.GetAsync(p => p.Id == id));
 
         [HttpPost]
         public async Task<ActionResult<User>> Post([FromForm] UserForCreation user)

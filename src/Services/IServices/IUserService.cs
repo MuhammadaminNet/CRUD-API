@@ -14,6 +14,6 @@ namespace src.Services.IServices
         Task<User> UpdateAsync(Expression<Func<User, bool>> expression, UserForCreation user);
         Task<bool> DeleteAsync(Expression<Func<User, bool>> expression);
         Task<User> GetAsync(Expression<Func<User, bool>> expression);
-        Task<IEnumerable<User>> GetAllAsync(PaginationParams @params, Expression<Func<User, bool>> expression = null);
+        Task<IEnumerable<User>> GetAllAsync(PaginationParams @params = null, Expression<Func<User, bool>> expression = null);
     }
 }
