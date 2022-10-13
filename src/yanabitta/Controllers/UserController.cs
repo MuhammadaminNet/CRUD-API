@@ -39,7 +39,7 @@ namespace src.yanabitta.Controllers
             return res != null ? new ObjectResult(res) : BadRequest();
         }
 
-        [HttpGet,Authorize]
+        [HttpGet]
         public async Task<ActionResult<User>> GetAll()
         {
             var paginationItems = new PaginationParams()

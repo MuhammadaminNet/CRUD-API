@@ -38,7 +38,7 @@ namespace src.Services.Services
                 Login = dto.Login,
                 Password = dto.Password,
                 FileId = attachment.Id,
-                Role = UserRole.User
+                Role = dto.Role
             };
 
             return await _unit.Users.CreateAsync(user);
@@ -58,14 +58,7 @@ namespace src.Services.Services
 
         public async Task<IEnumerable<User>> GetAllAsync(PaginationParams @params, Expression<Func<User, bool>> expression = null)
         {
-            var all = _unit.Users.GetAll(expression).ToList();
-
-            if (all != null)/*
-                return all.Skip((@params.PageIndex - 1) * @params.PageSize)
-                     .Take(@params.PageSize).ToList();*/
-                return all;
-
-            return null;
+            return _unit.Users.GetAll(expression).ToList();
         }
 
         public Task<User> GetAsync(Expression<Func<User, bool>> expression)

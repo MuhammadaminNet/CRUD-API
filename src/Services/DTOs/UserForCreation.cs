@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using src.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
@@ -17,6 +18,7 @@ namespace src.Services.DTOs
 
         [Required,MinLength(6),NotNull]
         public string Password { get; set; }
+        public UserRole Role { get; set; }
         public IFormFile File { get; set; }
     }
 }
